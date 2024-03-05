@@ -14,8 +14,7 @@ on:
         required: true
 
 jobs:
-  prepare_pull_request:
-    needs: read_payload
+  phrase_fetch:
     runs-on: ubuntu-latest
     env:
       PHRASE_CLI_VERSION: 2.20.0
