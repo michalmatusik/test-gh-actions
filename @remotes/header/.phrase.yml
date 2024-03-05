@@ -4,13 +4,13 @@ phrase:
   file_format: i18next
   pull:
     targets:
-      - file: "@remotes/dp-widget/.i18n/br.json"
+      - file: "@remotes/header/.i18n/br.json"
         params:
           tags: feegow-widget
           include_empty_translations: false
           locale_id: 'pt-BR'
 
-      - file: "@remotes/dp-widget/.i18n/pl.json"
+      - file: "@remotes/header/.i18n/pl.json"
         params:
           tags: feegow-widget
           include_empty_translations: false
