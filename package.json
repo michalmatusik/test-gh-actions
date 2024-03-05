@@ -13,8 +13,7 @@
     "phrase:analyze:remove": "yarn workspace @patient-portal/remotes-\"$@\" run remotejs phrase-analyze --remove --withModules"
   },
   "workspaces": [
-    "./@remotes/*",
-    "./@packages/*"
+    "./@remotes/*"
   ],
   "remotejs": {
     "workspaceDir": "./@remotes"
