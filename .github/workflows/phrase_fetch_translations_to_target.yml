@@ -69,7 +69,7 @@ jobs:
           PHRASE_PROJECT: ${{ github.event.inputs.remote_name }}
           NODE_ENV: development
           CI_MODE: true
-        run: yarn phrase:analyze:remove "PHRASE_PROJECT"
+        run: yarn phrase:analyze:remove "$PHRASE_PROJECT"
 
       - name: Check if there are changes in the translations
         uses: tj-actions/verify-changed-files@eb6d385c0e52fb28e2f6b70e15c835cb3cbfff17 # v18.0.0

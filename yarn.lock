@@ -1425,6 +1425,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@patient-portal/remotes-header@workspace:@remotes/header":
+  version: 0.0.0-use.local
+  resolution: "@patient-portal/remotes-header@workspace:@remotes/header"
+  dependencies:
+    "@docplanner/remotejs": "npm:1.0.0-snapshot-20240226182239"
+    "@types/node": "npm:^20.8.10"
+    vue: "npm:^3.4.19"
+    vue-i18n: "npm:^9.9.0"
+  languageName: unknown
+  linkType: soft
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -1853,17 +1864,6 @@ __metadata:
   checksum: 10/5f4de8c60d2623bed607c7fa1e0cee4ffc682af28d5ffe88dc9ed9903a1c2088ccc39f684689d6bb314595c9fbb560beaec773d633be515fb856ffc81d738822
   languageName: node
   linkType: hard
-
-"@test/remotes-header@workspace:@remotes/header":
-  version: 0.0.0-use.local
-  resolution: "@test/remotes-header@workspace:@remotes/header"
-  dependencies:
-    "@docplanner/remotejs": "npm:1.0.0-snapshot-20240226182239"
-    "@types/node": "npm:^20.8.10"
-    vue: "npm:^3.4.19"
-    vue-i18n: "npm:^9.9.0"
-  languageName: unknown
-  linkType: soft
 
 "@tsconfig/strictest@npm:^2.0.3":
   version: 2.0.3
