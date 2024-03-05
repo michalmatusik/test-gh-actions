@@ -15,5 +15,6 @@ export default createRemoteApp(() => {
 
     const { t } = useI18n();
 
-    t('dpw_menu_notifications')
+    t('dpw_menu_notifications');
+    t('dpw_dashboard_main_empty_state_title')
 });
