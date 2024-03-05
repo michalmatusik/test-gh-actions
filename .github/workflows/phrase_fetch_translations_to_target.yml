@@ -1,0 +1,90 @@
+name: Trigger - [Phrase] Don't use it
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+    inputs:
+      remote_name:
+        required: true
+
+jobs:
+  prepare_pull_request:
+    needs: read_payload
+    runs-on: ubuntu-latest
+    env:
+      PHRASE_CLI_VERSION: 2.20.0
+    steps:
+      - name: Set current date as output
+        id: currentDate
+        run: echo "now=$(date +'%Y%m%d%H%M%S%N')" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js latest
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: 20
+          cache: "yarn"
+
+      - name: Cache Phrase CLI
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
+        id: cache-phrase-cli
+        with:
+          path: /usr/local/bin/phrase
+          key: ${{ runner.os }}-phrase-${{ env.PHRASE_CLI_VERSION }}
+
+      - name: Install
+        run: yarn install --immutable
+        env:
+          GH_REGISTRY_TOKEN: ${{ secrets.GH_REGISTRY_TOKEN }}
+
+      - name: Install phrase
+        if: steps.cache-phrase-cli.outputs.cache-hit != 'true'
+        run: |
+          cd /tmp
+          curl -LO https://github.com/phrase/phrase-cli/releases/download/"$PHRASE_CLI_VERSION"/phrase_linux_amd64.tar.gz
+          tar -xzf phrase_linux_amd64.tar.gz
+          mv phrase_linux_amd64 /usr/local/bin/phrase
+          chmod +x /usr/local/bin/phrase
+          rm -rf phrase_linux_amd64.tar.gz
+
+      - run: phrase --help
+
+      - name: Pull Translations
+        env:
+          PHRASE_ACCESS_TOKEN: ${{ secrets.PHRASE_ACCESS_TOKEN }}
+          PHRASE_PROJECT: ${{ github.event.inputs.remote_name }}
+        run: phrase pull -t "$PHRASE_ACCESS_TOKEN" --config ./@remotes/"$PHRASE_PROJECT"/.phrase.yml
+
+      - name: Analyze Translations
+        env:
+          PHRASE_PROJECT: ${{ github.event.inputs.remote_name }}
+          NODE_ENV: development
+          CI_MODE: true
+        run: yarn phrase:analyze:remove "PHRASE_PROJECT"
+
+      - name: Check if there are changes in the translations
+        uses: tj-actions/verify-changed-files@eb6d385c0e52fb28e2f6b70e15c835cb3cbfff17 # v18.0.0
+        id: verify-changed-translations
+        with:
+          files: |
+            ./@remotes/${{ github.event.inputs.remote_name }}/.i18n/**
+
+      - name: There are not changes in the translations, stop the workflow run and exit with an error
+        if: steps.verify-changed-translations.outputs.files_changed == 'false'
+        run: exit 1
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@e040c596f0a65570b339c60818081175bcf82d11 # v5.0.0
+        if: success()
+        with:
+          commit_message: "ci(RemoteJS): fetch translations"
