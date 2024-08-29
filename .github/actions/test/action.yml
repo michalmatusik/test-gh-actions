@@ -1,0 +1,19 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  who-to-greet:
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs:
+  time:
+    description: 'The time we greeted you'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+    - name: Extract info
+      run: |
+        echo "time=234" >> "$GITHUB_OUTPUT"
+

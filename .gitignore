@@ -18,3 +18,5 @@ mutagen.*
 **/@mf-types
 **/.cache
 .turbo
+
+!@actions/*/dist
