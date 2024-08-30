@@ -1,4 +1,10 @@
-import crypto from 'crypto';
+'use strict';
+
+var crypto = require('crypto');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+
+var crypto__default = /*#__PURE__*/_interopDefault(crypto);
 
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -153,7 +159,7 @@ var require_command = __commonJS({
 });
 function rng() {
     if (poolPtr > rnds8Pool.length - 16) {
-        crypto.randomFillSync(rnds8Pool);
+        crypto__default.default.randomFillSync(rnds8Pool);
         poolPtr = 0;
     }
     return rnds8Pool.slice(poolPtr, poolPtr += 16);
@@ -357,7 +363,7 @@ function md5(bytes) {
     } else if (typeof bytes === "string") {
         bytes = Buffer.from(bytes, "utf8");
     }
-    return crypto.createHash("md5").update(bytes).digest();
+    return crypto__default.default.createHash("md5").update(bytes).digest();
 }
 var md5_default;
 var init_md5 = __esm({
@@ -406,7 +412,7 @@ function sha1(bytes) {
     } else if (typeof bytes === "string") {
         bytes = Buffer.from(bytes, "utf8");
     }
-    return crypto.createHash("sha1").update(bytes).digest();
+    return crypto__default.default.createHash("sha1").update(bytes).digest();
 }
 var sha1_default;
 var init_sha1 = __esm({
