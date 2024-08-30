@@ -2,6 +2,7 @@
   "name": "test-gh-actions",
   "private": true,
   "main": "@actions/test/dist/index.js",
+  "type": "module",
   "scripts": {
     "====REMOTES====": "",
     "serve": "yarn workspace @patient-portal/remotes-\"$@\" serve",
