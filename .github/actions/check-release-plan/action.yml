@@ -1,0 +1,7 @@
+name: '[RemoteJS] Check Release Plan'
+
+description: 'Validate changeset markdowns'
+
+runs:
+  using: 'node20'
+  main: 'index.cjs'
