@@ -19,7 +19,7 @@ inputs:
 
   commit-message:
     description: 'Define commit message'
-    default: 'ci(RemoteJS): generate release plan'
+    default: 'ci: [RemoteJS] generate release plan'
     required: false
 
   author-name:
