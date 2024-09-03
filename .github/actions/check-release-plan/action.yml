@@ -4,16 +4,16 @@ description: 'Validate changeset markdowns'
 
 inputs:
   cwd:
-    description: 'Sets the cwd for the node process. Default to `process.cwd()`'
+    description: 'Sets the cwd for the node process'
     required: false
 
-  release-ref-branch:
-    description: 'Branch used for creating release. Default to `remotejs-release/develop`'
+  release-branch:
+    description: 'Branch used for creating release'
     default: 'remotejs-release/develop'
     required: false
 
-  release-base-branch:
-    description: 'Branch used as a target for merging releases. Default to `develop`'
+  base-branch:
+    description: 'Branch used as a target for merging releases'
     default: 'develop'
     required: false
 

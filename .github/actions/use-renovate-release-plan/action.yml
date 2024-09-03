@@ -1,24 +1,39 @@
-name: '[RemoteJS] Renovate Release Plan'
+name: '[RemoteJS] Generate Release Plan for bumped packages'
 
 description: 'Generate changeset markdown for renovate pull request'
 
 inputs:
   cwd:
-    description: 'Sets the cwd for the node process. Default to `process.cwd()`'
+    description: 'Sets the cwd for the node process'
     required: false
 
-  renovate-git-author:
-    description: 'Renovate git author used for creating PR. Default to `Renovate`'
-    default: 'Renovate'
+  branch-prefix:
+    description: 'Run pipeline only on prefixed branches'
+    default: '*'
     required: false
 
-  renovate-branch-prefix:
-    description: 'Renovate branch prefix used for creating PR. Default to `renovate`'
-    default: 'renovate'
+  release-summary:
+    description: 'Define release plan summary'
+    default: ${{ github.event.pull_request.title }}
+    required: false
+
+  commit-message:
+    description: 'Define commit message'
+    default: 'ci(RemoteJS): generate release plan'
+    required: false
+
+  author-name:
+    description: 'Define commit author name'
+    default: 'DevDocplanner'
+    required: false
+
+  author-email:
+    description: 'Define commit author email'
+    default: 'dev@docplanner.com'
     required: false
 
   github-token:
-    description: 'GitHub token for authentication. Default to `github.token`'
+    description: 'GitHub token for authentication'
     default: ${{ github.token }}
     required: false
 
