@@ -2,6 +2,21 @@ name: '[RemoteJS] Check Release Plan'
 
 description: 'Validate changeset markdowns'
 
+inputs:
+  cwd:
+    description: 'Sets the cwd for the node process. Default to `process.cwd()`'
+    required: false
+
+  release-ref-branch:
+    description: 'Branch used for creating release. Default to `remotejs-release/develop`'
+    default: 'remotejs-release/develop'
+    required: false
+
+  release-base-branch:
+    description: 'Branch used as a target for merging releases. Default to `develop`'
+    default: 'develop'
+    required: false
+
 runs:
   using: 'node20'
-  main: 'index.cjs'
+  main: 'dist/index.cjs'
