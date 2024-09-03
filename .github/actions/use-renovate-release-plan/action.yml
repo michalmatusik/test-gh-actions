@@ -3,21 +3,25 @@ name: '[RemoteJS] Renovate Release Plan'
 description: 'Generate changeset markdown for renovate pull request'
 
 inputs:
-  renovate-git-author:
-    description: 'Renovate git author used for creating PR. Default to `Renovate`'
-    default: 'Renovate'
-    required: false
-  renovate-branch-prefix:
-    description: 'Renovate branch prefix used for creating PR. Default to `renovate`'
-    default: 'renovate'
-    required: false
-  github-token:
-    description: 'GitHub token for authentication.'
-    required: true
   cwd:
     description: 'Sets the cwd for the node process. Default to `process.cwd()`'
     required: false
 
+  renovate-git-author:
+    description: 'Renovate git author used for creating PR. Default to `Renovate`'
+    default: 'Renovate'
+    required: false
+
+  renovate-branch-prefix:
+    description: 'Renovate branch prefix used for creating PR. Default to `renovate`'
+    default: 'renovate'
+    required: false
+
+  github-token:
+    description: 'GitHub token for authentication. Default to `github.token`'
+    required: false
+    default: ${{ github.token }}
+
 runs:
   using: 'node20'
-  main: 'index.cjs'
+  main: 'dist/index.cjs'
