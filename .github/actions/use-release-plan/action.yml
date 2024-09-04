@@ -12,19 +12,19 @@ inputs:
     default: 'develop'
     required: false
 
+  release-branch:
+    description: 'Branch used for creating release'
+    default: 'changeset-release/develop'
+    required: false
+
   branch-prefix:
     description: 'Run pipeline only on prefixed branches'
     default: '*'
     required: false
 
-  release-summary:
-    description: 'Define release plan summary'
-    default: ${{ github.event.pull_request.title }}
-    required: false
-
   commit-message:
     description: 'Define commit message'
-    default: 'ci: [RemoteJS] generate release plan'
+    default: 'ci(remotejs): generate release plan'
     required: false
 
   author-name:
