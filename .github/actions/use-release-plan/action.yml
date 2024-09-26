@@ -1,0 +1,47 @@
+name: '[RemoteJS] Generate Release Plan for bumped packages'
+
+description: 'Generate changeset markdown for renovate pull request'
+
+inputs:
+  cwd:
+    description: 'Sets the cwd for the node process'
+    required: false
+
+  base-branch:
+    description: 'Branch used as a target for merging releases'
+    default: 'develop'
+    required: false
+
+  release-branch:
+    description: 'Branch used for creating release'
+    default: 'changeset-release/develop'
+    required: false
+
+  branch-prefix:
+    description: 'Run pipeline only on prefixed branches'
+    default: '*'
+    required: false
+
+  commit-message:
+    description: 'Define commit message'
+    default: 'ci(remotejs): generate release plan'
+    required: false
+
+  author-name:
+    description: 'Define commit author name'
+    default: 'DevDocplanner'
+    required: false
+
+  author-email:
+    description: 'Define commit author email'
+    default: 'dev@docplanner.com'
+    required: false
+
+  github-token:
+    description: 'GitHub token for authentication'
+    default: ${{ github.token }}
+    required: false
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

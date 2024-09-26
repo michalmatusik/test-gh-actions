@@ -14,8 +14,7 @@ on:
         required: true
 
 jobs:
-  prepare_pull_request:
-    needs: read_payload
+  phrase_fetch:
     runs-on: ubuntu-latest
     env:
       PHRASE_CLI_VERSION: 2.20.0
@@ -70,10 +69,10 @@ jobs:
           PHRASE_PROJECT: ${{ github.event.inputs.remote_name }}
           NODE_ENV: development
           CI_MODE: true
-        run: yarn phrase:analyze:remove "PHRASE_PROJECT"
+        run: yarn phrase:analyze:remove "$PHRASE_PROJECT"
 
       - name: Check if there are changes in the translations
-        uses: tj-actions/verify-changed-files@eb6d385c0e52fb28e2f6b70e15c835cb3cbfff17 # v18.0.0
+        uses: tj-actions/verify-changed-files@d774a4c7ebe335445d79c7b44138f56a76058ba0 # v19.0.0
         id: verify-changed-translations
         with:
           files: |

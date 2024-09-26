@@ -1,0 +1,17 @@
+#TODO that file will be deleted
+phrase:
+  project_id: 7a94244bd5820cb4613abac04881bfe7
+  file_format: i18next
+  pull:
+    targets:
+      - file: "@remotes/header/.i18n/br.json"
+        params:
+          tags: feegow-widget
+          include_empty_translations: false
+          locale_id: 'pt-BR'
+
+      - file: "@remotes/header/.i18n/pl.json"
+        params:
+          tags: feegow-widget
+          include_empty_translations: false
+          locale_id: 'pl'

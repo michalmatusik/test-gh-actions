@@ -1,0 +1,25 @@
+{
+  "name": "@patient-portal/remotes-header",
+  "version": "1.1.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "remotejs serve --port=5006",
+    "serve:preview": "remotejs serve --port=5006 --preview --analyze",
+    "build": "remotejs build",
+    "build:preview": "remotejs build --preview"
+  },
+  "engines": {
+    "node": ">=20.6.1"
+  },
+  "dependencies": {
+    "vue": "^3.4.19",
+    "vue-i18n": "^9.9.0"
+  },
+  "devDependencies": {
+    "@docplanner/remotejs": "1.0.0-snapshot-20240226182239",
+    "@types/node": "^20.8.10"
+  },
+  "license": "UNLICENSED",
+  "packageManager": "yarn@4.1.0"
+}
